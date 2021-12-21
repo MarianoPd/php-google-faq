@@ -88,6 +88,9 @@
         .my-section h2{
             padding-bottom: 30px;
         }
+        .my-section h3{
+            margin: 30px 0;
+        }
     </style>
 </head>
 <body>
@@ -98,10 +101,36 @@
     <main class="my-container">
         <?php foreach($sections as $key => $section) {?>
          
-        <section class="my-section">
+        <div class="my-section">
             <h2><?php echo $section['question']?></h2>
-            <p><?php echo $section['response']?></p>
-        </section>
+            <p><?php
+                    $response= explode("\n",$section['response']) ;
+                    //var_dump($response);
+                    foreach($response as $item){
+                        echo $item;
+                        echo "<br>";
+                    }
+                ?></p>
+            <div>
+                <h3><?php
+                    $subQstn =  $section['subquestion'];
+                    if(count($subQstn)){
+                        echo $subQstn['question'];
+                    }
+                ?></h3>
+                <p><?php
+                    $subQstn =  $section['subquestion'];
+                    if(count($subQstn)){
+                        $response= explode("\n",$subQstn['response']) ;
+                        //var_dump($response);
+                        foreach($response as $item){
+                        echo $item;
+                        echo "<br>";
+                    }
+                    }
+                ?></p>
+            </div>
+        </div>
 
 
         <?php }?>
